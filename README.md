@@ -1,7 +1,7 @@
 # GFD Studio [![Build status](https://ci.appveyor.com/api/projects/status/l3p8joj4frjkn753?svg=true)](https://ci.appveyor.com/project/tge/gfd-studio)
 **GFD Studio** is a tool for viewing, editing and converting models in **GMD**/**GFS** format.  
 ## Latest builds
-Latest debug/release builds can be found here: https://ci.appveyor.com/project/tge/gfd-studio/build/artifacts
+Latest debug/release builds can be found here: [https://github.com/tge-was-taken/GFD-Studio/releases](https://github.com/tge-was-taken/GFD-Studio/releases)
 
 ## Features
 - View a rendered preview of the opened model
