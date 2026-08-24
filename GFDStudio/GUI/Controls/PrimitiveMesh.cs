@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Numerics;
+using GFDLibrary;
 using GFDLibrary.Rendering.OpenGL;
 using GFDLibrary.Utilities;
 using GFDStudio.DataManagement;
@@ -60,7 +61,7 @@ namespace GFDStudio.GUI.Controls
 
         public GLMesh Instantiate( bool renderWireframe, bool enableBackfaceCulling, Vector4 color )
         {
-            return new GLMesh( new GLVertexArray( mVertices, null, null, null, mIndices, mPrimitiveType ),
+            return new GLMesh( new GLVertexArray( mVertices, null, null, null, mIndices, mPrimitiveType, ResourceVersion.Persona5 ),
                                new GLP5Material { RenderWireframe = renderWireframe, Diffuse = color, EnableBackfaceCulling = enableBackfaceCulling }, true );
         }
     }

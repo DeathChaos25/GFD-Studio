@@ -53,7 +53,7 @@ namespace GFDLibrary.Rendering.OpenGL
                     if ( attachment.Type != NodeAttachmentType.Mesh )
                         continue;
 
-                    var glMesh = new GLMesh( attachment.GetValue<Mesh>(), glNode.Node.WorldTransform, modelPack.Model.Bones, Nodes, Materials );
+                    var glMesh = new GLMesh( attachment.GetValue<Mesh>(), glNode.Node.WorldTransform, modelPack.Model.Bones, Nodes, Materials, version: modelPack.Version );
                     glNode.Meshes.Add( glMesh );
                 }
             }
@@ -109,7 +109,7 @@ namespace GFDLibrary.Rendering.OpenGL
                 {
                     case NodeAttachmentType.Mesh:
                     {
-                        var glMesh = new GLMesh( attachment.GetValue<Mesh>(), glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials );
+                        var glMesh = new GLMesh( attachment.GetValue<Mesh>(), glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials, version: ModelPack.Version );
                         glNode.Meshes.Add( glMesh );
                         break;
                     }
@@ -201,7 +201,7 @@ namespace GFDLibrary.Rendering.OpenGL
                 {
                     var mesh = attachment.GetValue<Mesh>();
                     Trace.WriteLine( $"[GLModel] Embedded mesh on node '{embeddedNode.Name}': Material='{mesh.MaterialName}', Vertices={mesh.VertexCount}, Triangles={mesh.TriangleCount}" );
-                    var glMesh = new GLMesh( mesh, glNode.WorldTransform, embeddedModelPack.Model.Bones, Nodes, Materials );
+                    var glMesh = new GLMesh( mesh, glNode.WorldTransform, embeddedModelPack.Model.Bones, Nodes, Materials, version: embeddedModelPack.Version );
                     glNode.Meshes.Add( glMesh );
                 }
             }
@@ -289,7 +289,7 @@ namespace GFDLibrary.Rendering.OpenGL
                     var oldGlMesh = glNode.Meshes[i];
                     if (oldGlMesh.Mesh != null)
                     {
-                        glNode.Meshes[i] = new GLMesh( oldGlMesh.Mesh, glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials );
+                        glNode.Meshes[i] = new GLMesh( oldGlMesh.Mesh, glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials, version: ModelPack.Version );
                     }
 
                     oldGlMesh.Dispose();
@@ -362,7 +362,7 @@ namespace GFDLibrary.Rendering.OpenGL
                         var morphWeights = GetMorphWeightsForNode( glNode.Node );
                         if ( morphWeights.Count == 0 )
                             morphWeights = null;
-                        glMesh = glNode.Meshes[i] = new GLMesh( oldGlMesh.Mesh, glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials, morphWeights );
+                        glMesh = glNode.Meshes[i] = new GLMesh( oldGlMesh.Mesh, glNode.WorldTransform, ModelPack.Model.Bones, Nodes, Materials, morphWeights, ModelPack.Version );
                         oldGlMesh.Dispose();
                     }
                     GLShaderProgram targetShader = GetTargetShader( context.ShaderRegistry, glMesh, context.Camera.View, context.Camera.Projection, shaderProgramsInUse );

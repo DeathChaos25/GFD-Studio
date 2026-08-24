@@ -27,7 +27,7 @@ namespace GFDLibrary.Rendering.OpenGL
             IsVisible = isVisible;
         }
 
-        public GLMesh( Mesh mesh, Matrix4x4 modelMatrix, List<Bone> bones, List<GLNode> nodes, Dictionary<string, GLBaseMaterial> materials, Dictionary<int, float> morphWeights = null )
+        public GLMesh( Mesh mesh, Matrix4x4 modelMatrix, List<Bone> bones, List<GLNode> nodes, Dictionary<string, GLBaseMaterial> materials, Dictionary<int, float> morphWeights = null, uint version = ResourceVersion.Persona5 )
         {
             Mesh = mesh;
 
@@ -100,10 +100,10 @@ namespace GFDLibrary.Rendering.OpenGL
                 indices[( i * 3 ) + 2] = mesh.Triangles[i].C;
             }
 
-            VertexArray = new GLVertexArray( vertices, normals, 
-                new[] { mesh.TexCoordsChannel0, mesh.TexCoordsChannel1, mesh.TexCoordsChannel2 }, 
+            VertexArray = new GLVertexArray( vertices, normals,
+                new[] { mesh.TexCoordsChannel0, mesh.TexCoordsChannel1, mesh.TexCoordsChannel2 },
                 new[] { mesh.ColorChannel0, mesh.ColorChannel1, mesh.ColorChannel2 },
-                indices, PrimitiveType.Triangles );
+                indices, PrimitiveType.Triangles, version );
 
             // material
             if ( mesh.MaterialName != null && materials != null )
